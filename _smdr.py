@@ -10,7 +10,7 @@ count, lines = 0, 0
 logging.basicConfig(filename="smdr.log", format='%(levelname)s : %(asctime)s : %(message)s', level=logging.INFO)
 logging.info('begin ...')
 
-conn = Telnet('192.168.0.201', 8808) # ipo address and port 
+conn = Telnet('192.168.0.201', 8808) # ipo address and port, setup needed through ipo manager
 
 try:
     while count < 4:
