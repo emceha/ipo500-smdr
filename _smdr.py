@@ -1,4 +1,5 @@
 #! python
+# not compatible with python 3!
 
 from telnetlib import Telnet
 from datetime import datetime
