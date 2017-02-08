@@ -9,7 +9,7 @@ count, lines = 0, 0
 logging.basicConfig(filename="smdr.log", format='%(levelname)s : %(asctime)s : %(message)s', level=logging.INFO)
 logging.info('begin ...')
 
-conn = Telnet('192.168.0.201', 8808) # ipo
+conn = Telnet('192.168.0.201', 8808) # ipo address and port 
 
 try:
     while count < 4:
@@ -18,9 +18,9 @@ try:
         if smdr != "":
             data = smdr.strip().split(',')
             stamp = datetime.strptime(data[0], '%Y/%m/%d %H:%M:%S')
-            data = ','.join(data[0].split(' ') + data[1:])
+            data = ','.join(data[0].split(' ') + data[1:]) # separate date and time
             print(data)
-    
+            
             filename = "%s-%s.log" % (stamp.strftime("%Y"), stamp.strftime("%m")) 
             with open(filename, "a") as clog:
                 clog.write(data + '\n')
