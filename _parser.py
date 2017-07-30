@@ -6,7 +6,7 @@ from datetime import timedelta
 from collections import defaultdict
 
 # avaya ipo 500 smdr format but date and time separated!
-keys = ['DATE', 'TIME', 'DURATION', 'RING', 'CALLER', 'DIR', 'CALLED', 'DIALLED',
+keys = ['DATE', 'TIME', 'DURATION', 'RING', 'CALLER', 'DIR', 'CALLED', 'DIALED',
         'ACC', 'EXT', 'CALLID', 'CONT', 'P1DEV', 'P1NAME', 'P2DEV', 'P2NAME']
 
 
