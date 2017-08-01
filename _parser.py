@@ -15,7 +15,7 @@ def main(logfile):
     calls = (dict(zip(header, row)) for row in data)
 
     # filter all outgoing external calls 
-    res = [c for c in calls if c['DIR'] == 'O' and c['P2NAME'].startswith('Line') and (len(c['CALLED']) > 8)]
+    res = [c for c in calls if c['DIR'] == 'O' and c['P2NAME'].startswith('Line')]
     
     # for every caller collect pairs (phone number, call duration)
     d = defaultdict(list)
