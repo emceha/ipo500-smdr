@@ -15,7 +15,7 @@ conn = Telnet('192.168.0.201', 8808) # ipo
 
 try:
     while count < 5:
-        data = conn.read_until('\n', 3) # 3s timeout
+        data = conn.read_until('\n', 3).strip() # 3s timeout
         
         if data != "":
             stamp = datetime.strptime(data[:19], '%Y/%m/%d %H:%M:%S')
@@ -25,10 +25,10 @@ try:
             if not os.path.exists(filename):
                 with open(filename, "w") as clog:
                     clog.write(header)
-                    clog.write(data)
+                    clog.write(data + '\n')
             else:
                 with open(filename, "a") as clog:
-                    clog.write(data)
+                    clog.write(data + '\n')
         
             lines += 1
             count = 0
