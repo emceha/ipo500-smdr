@@ -10,9 +10,7 @@ from collections import defaultdict
 # DATETIME,DURATION,RING,CALLER,DIR,CALLED,DIALED,ACC,EXT,CALLID,CONT,P1DEV,P1NAME,P2DEV,P2NAME,,,,,,,,,,,,,,,,IP1,PORT1,IP2,PORT2
 
 def main(logfile):
-    data = csv.reader(open(logfile))
-    header = data.next()
-    calls = (dict(zip(header, row)) for row in data)
+    calls = csv.DictReader(open(logfile))
 
     # filter all outgoing external calls 
     res = [c for c in calls if c['DIR'] == 'O' and c['P2NAME'].startswith('Line')]
