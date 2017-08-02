@@ -11,9 +11,9 @@ count, lines = 0, 0
 logging.basicConfig(filename="smdr.log", format='%(levelname)s : %(asctime)s : %(message)s', level=logging.INFO)
 logging.info('begin ...')
 
-conn = Telnet('192.168.0.201', 8808) # ipo
-
 try:
+    conn = Telnet('192.168.0.201', 8808) # ipo
+    
     while count < 5:
         data = conn.read_until('\n', 3).strip() # 3s timeout
         
