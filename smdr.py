@@ -28,7 +28,7 @@ try:
             print(data)
 
             stamp = datetime.strptime(data[:19], '%Y/%m/%d %H:%M:%S')
-            filename = "log\\%s-%s.log" % (stamp.strftime("%Y"), stamp.strftime("%m"))
+            filename = "log\\{}-{}.log".format(stamp.strftime("%Y"), stamp.strftime("%m"))
             
             if not os.path.exists(filename):
                 with open(filename, "w") as clog:
