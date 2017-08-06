@@ -17,9 +17,9 @@ def main(logfile):
     res = [c for c in calls if c['DIR'] == 'O' and c['P2NAME'].startswith('Line')]
 
     ## filter all outgoing internal calls
-    # res = [c for c in calls if c['DIR'] == 'O' and c['EXT'] == '1']
+    #res = [c for c in calls if c['DIR'] == 'O' and c['EXT'] == '1']
 
-    ## for every caller collect pairs (phone number, call duration)
+    ## for every caller collect pairs (called number, call duration)
     d = defaultdict(list)
     for n in res:
         caller = n['P1NAME']
