@@ -1,3 +1,7 @@
+'''
+Nothing to do with smdr (yet)
+'''
+
 #! python3
 #! coding: utf-8
 
