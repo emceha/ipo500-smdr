@@ -11,7 +11,7 @@ header = "DATETIME,DURATION,RING,CALLER,DIR,CALLED,DIALED,ACC,EXT,CALLID,CONT,\
 
 count, lines = 0, 0
 
-logging.basicConfig(filename="out\\smdr.log",
+logging.basicConfig(filename="log\\smdr.log",
                     format='%(levelname)s : %(asctime)s : %(message)s',
                     level=logging.INFO)
 
@@ -27,7 +27,7 @@ try:
             print(data)
 
             stamp = datetime.strptime(data[:19], '%Y/%m/%d %H:%M:%S')
-            filename = "out\\%s-%s.log" % (stamp.strftime("%Y"), stamp.strftime("%m"))
+            filename = "log\\%s-%s.log" % (stamp.strftime("%Y"), stamp.strftime("%m"))
             
             if not os.path.exists(filename):
                 with open(filename, "w") as clog:
