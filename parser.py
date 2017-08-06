@@ -5,27 +5,23 @@ import csv
 from datetime import timedelta
 from collections import defaultdict
 
-## must be the first line of csv file
-# DATETIME,DURATION,RING,CALLER,DIR,CALLED,DIALED,ACC,EXT,CALLID,CONT,\
-# P1DEV,P1NAME,P2DEV,P2NAME,,,,,,,,,,,,,,,,IP1,PORT1,IP2,PORT2
-
 
 def main(logfile):
     calls = csv.DictReader(open(logfile, encoding='utf-8'))
-
+    
     ## filter all outgoing external calls
-    res = [c for c in calls if c['DIR'] == 'O' and c['P2NAME'].startswith('Line')]
+    res = [c for c in calls if c['direction'] == 'O' and c['p2name'].startswith('Line')]
 
     ## filter all outgoing internal calls
-    #res = [c for c in calls if c['DIR'] == 'O' and c['EXT'] == '1']
+    #res = [c for c in calls if c['direction'] == 'O' and c['isinternal'] == '1']
 
     ## for every caller collect pairs (called number, call duration)
     d = defaultdict(list)
     for n in res:
-        caller = n['P1NAME']
-        called = n['CALLED']
+        caller = n['p1name']
+        called = n['called']
 
-        (h, m, s) = n['DURATION'].split(':')
+        (h, m, s) = n['duration'].split(':')
         delta = timedelta(hours=int(h), minutes=int(m), seconds=int(s))
 
         if delta > timedelta():

@@ -6,8 +6,9 @@ from datetime import datetime
 import logging
 import os
 
-header = "DATETIME,DURATION,RING,CALLER,DIR,CALLED,DIALED,ACC,EXT,CALLID,\
-          CONT,P1DEV,P1NAME,P2DEV,P2NAME,,,,,,,,,,,,,,,,IP1,PORT1,IP2,PORT2"
+header = "datetime,duration,ringtime,caller,direction,called,dialled,account,isinternal,callid,continuation,p1device,p1name,\
+          p2device,p2name,holdtime,parktime,authvalid,authcode,usercharged,callcharge,currency,aocamount,callunits,aocunits,\
+          costperunit,markup,exttargettingcause,exttargeterid,exttargetednumber,ip1,port1,ip2,port2"
 
 count, lines = 0, 0
 
