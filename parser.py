@@ -1,4 +1,4 @@
-#! python 3
+#! python3
 #! coding: utf-8
 
 import csv
