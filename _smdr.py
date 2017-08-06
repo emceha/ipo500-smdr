@@ -7,7 +7,7 @@ import logging
 import os
 
 header = "DATETIME,DURATION,RING,CALLER,DIR,CALLED,DIALED,ACC,EXT,CALLID,CONT,\
-          P1DEV,P1NAME,P2DEV,P2NAME,,,,,,,,,,,,,,,,IP1,PORT1,IP2,PORT2\n"
+          P1DEV,P1NAME,P2DEV,P2NAME,,,,,,,,,,,,,,,,IP1,PORT1,IP2,PORT2"
 count, lines = 0, 0
 
 logging.basicConfig(filename="smdr.log",
@@ -30,7 +30,7 @@ try:
             
             if not os.path.exists(filename):
                 with open(filename, "w") as clog:
-                    clog.write(header)
+                    clog.write(header + '\n')
                     clog.write(data + '\n')
             else:
                 with open(filename, "a") as clog:
