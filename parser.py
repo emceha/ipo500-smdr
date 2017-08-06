@@ -9,6 +9,7 @@ from collections import defaultdict
 # DATETIME,DURATION,RING,CALLER,DIR,CALLED,DIALED,ACC,EXT,CALLID,CONT,\
 # P1DEV,P1NAME,P2DEV,P2NAME,,,,,,,,,,,,,,,,IP1,PORT1,IP2,PORT2
 
+
 def main(logfile):
     calls = csv.DictReader(open(logfile, encoding='utf-8'))
 
