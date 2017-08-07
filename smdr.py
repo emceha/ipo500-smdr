@@ -1,4 +1,4 @@
-#! python3
+#! python
 #! coding: utf-8
 
 from telnetlib import Telnet
@@ -22,21 +22,21 @@ try:
     conn = Telnet('192.168.0.201', 8808) # ipo
 
     while count < 5: # 15s total timeout
-        data = conn.read_until(b'\n', 3).decode("utf-8").strip() # 3s timeout
-
-        if data != "":
-            print(data)
-
-            stamp = datetime.strptime(data[:19], '%Y/%m/%d %H:%M:%S')
+        data = conn.read_until(b'\n', 3).strip() # 3s timeout
+        
+        if data:
+            line = data.decode('utf-8') 
+            print(line)
+            stamp = datetime.strptime(line[:19], '%Y/%m/%d %H:%M:%S')
             filename = "log\\{}-{}.log".format(stamp.strftime("%Y"), stamp.strftime("%m"))
             
             if not os.path.exists(filename):
-                with open(filename, "w") as clog:
-                    clog.write(header + '\n')
-                    clog.write(data + '\n')
+                with open(filename, "wb") as clog:
+                    clog.write(header + b'\n')
+                    clog.write(data + b'\n')
             else:
-                with open(filename, "a") as clog:
-                    clog.write(data + '\n')
+                with open(filename, "ab") as clog:
+                    clog.write(data + b'\n')
 
             lines += 1
             count = 0

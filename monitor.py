@@ -2,7 +2,7 @@
 Nothing to do with smdr (yet)
 '''
 
-#! python3
+#! python
 #! coding: utf-8
 
 import dash
