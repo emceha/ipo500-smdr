@@ -6,7 +6,7 @@ from datetime import datetime
 import logging
 import os
 
-header = "datetime,duration,ringtime,caller,direction,called,dialled,account,isinternal,callid,continuation,p1device,p1name,\
+header = b"datetime,duration,ringtime,caller,direction,called,dialled,account,isinternal,callid,continuation,p1device,p1name,\
           p2device,p2name,holdtime,parktime,authvalid,authcode,usercharged,callcharge,currency,aocamount,callunits,aocunits,\
           costperunit,markup,exttargettingcause,exttargeterid,exttargetednumber,ip1,port1,ip2,port2"
 
