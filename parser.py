@@ -8,7 +8,7 @@ from collections import defaultdict
 
 def main(logfile):
     calls = csv.DictReader(open(logfile, encoding='utf-8'))
-    
+
     ## filter all outgoing external calls
     res = [c for c in calls if c['direction'] == 'O' and c['p2name'].startswith('Line')]
 
@@ -50,6 +50,6 @@ def main(logfile):
 if __name__ == "__main__":
     from sys import argv
 
-    if len(argv) > 1:    
+    if len(argv) > 1:
         main(argv[1])
-
+    
