@@ -30,7 +30,7 @@ def main(logfile):
     ## present results
     for n in d:
         print(n)
-        print('+-----------+-----+----------+')
+        print('+------------+-----+----------+')
 
         dd = defaultdict(list)
         for k, v in d[n]:
@@ -40,11 +40,11 @@ def main(logfile):
         for k in dd:
             sd = sum(dd[k], timedelta())
             total += sd
-            print('| % 9s | % 3s | %  8s |' % (k, len(dd[k]), sd))
+            print('| % 10s | % 3s | %  8s |' % (k, len(dd[k]), sd))
 
-        print('+-----------+-----+----------+')
-        print('            | % 3s | % 8s |' % (len(d[n]), total))
-        print('            +-----+----------+')
+        print('+------------+-----+----------+')
+        print('             | % 3s | % 8s |' % (len(d[n]), total))
+        print('             +-----+----------+')
 
 
 if __name__ == "__main__":
