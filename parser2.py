@@ -4,7 +4,7 @@
 import pandas as pd
 
 def main(logfile):
-    df = pd.read_csv('log\\2017-08.log', sep=',')
+    df = pd.read_csv(logfile, sep=',')
     df['duration'] = pd.to_timedelta(df['duration'])
 
     dfo = df.loc[(df.direction == 'O') & df.p2name.str.startswith("Line") &
