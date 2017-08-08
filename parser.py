@@ -41,11 +41,10 @@ def main(logfile):
             sd = sum(called[number], timedelta())
             total += sd
             print('| % 10s | % 3s | %  8s |' % (number, len(called[number]), sd))
-        
+
         print('+------------+-----+----------+')
-        if len(callers[caller]) > 1:
-            print('             | % 3s | % 8s |' % (len(callers[caller]), total))
-            print('             +-----+----------+')
+        print('             | % 3s | % 8s |' % (len(callers[caller]), total))
+        print('             +-----+----------+')
 
 
 if __name__ == "__main__":
