@@ -10,41 +10,42 @@ def main(logfile):
     calls = csv.DictReader(open(logfile, encoding='utf-8'))
 
     ## filter all outgoing external calls
-    res = [c for c in calls if c['direction'] == 'O' and c['p2name'].startswith('Line')]
+    filtered = [c for c in calls if c['direction'] == 'O' and c['p2name'].startswith('Line')]
 
     ## filter all outgoing internal calls
-    #res = [c for c in calls if c['direction'] == 'O' and c['isinternal'] == '1']
+    #filtered = [c for c in calls if c['direction'] == 'O' and c['isinternal'] == '1']
 
     ## for every caller collect pairs (called number, call duration)
-    d = defaultdict(list)
-    for call in res:
+    callers = defaultdict(list)
+    for call in filtered:
         caller = call['p1name']
         called = call['called']
 
         (hh, mm, ss) = call['duration'].split(':')
-        td = timedelta(hours=int(hh), minutes=int(mm), seconds=int(ss))
+        duration = timedelta(hours=int(hh), minutes=int(mm), seconds=int(ss))
 
-        if td > timedelta():
-            d[caller].append((called, td))
+        if duration > timedelta():
+            callers[caller].append((called, duration))
 
     ## present results
-    for name in d:
-        print(name)
+    for caller in callers:
+        print(caller)
         print('+------------+-----+----------+')
 
-        dd = defaultdict(list)
-        for called, duration in d[name]:
-            dd[called].append(duration)
+        called = defaultdict(list)
+        for number, duration in callers[caller]:
+            called[number].append(duration)
 
         total = timedelta()
-        for called in dd:
-            sd = sum(dd[called], timedelta())
+        for number in called:
+            sd = sum(called[number], timedelta())
             total += sd
-            print('| % 10s | % 3s | %  8s |' % (called, len(dd[called]), sd))
-
+            print('| % 10s | % 3s | %  8s |' % (number, len(called[number]), sd))
+        
         print('+------------+-----+----------+')
-        print('             | % 3s | % 8s |' % (len(d[name]), total))
-        print('             +-----+----------+')
+        if len(callers[caller]) > 1:
+            print('             | % 3s | % 8s |' % (len(callers[caller]), total))
+            print('             +-----+----------+')
 
 
 if __name__ == "__main__":
