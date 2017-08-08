@@ -17,33 +17,33 @@ def main(logfile):
 
     ## for every caller collect pairs (called number, call duration)
     d = defaultdict(list)
-    for n in res:
-        caller = n['p1name']
-        called = n['called']
+    for call in res:
+        caller = call['p1name']
+        called = call['called']
 
-        (h, m, s) = n['duration'].split(':')
-        delta = timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+        (hh, mm, ss) = call['duration'].split(':')
+        td = timedelta(hours=int(hh), minutes=int(mm), seconds=int(ss))
 
-        if delta > timedelta():
-            d[caller].append((called, delta))
+        if td > timedelta():
+            d[caller].append((called, td))
 
     ## present results
-    for n in d:
-        print(n)
+    for name in d:
+        print(name)
         print('+------------+-----+----------+')
 
         dd = defaultdict(list)
-        for k, v in d[n]:
-            dd[k].append(v)
+        for called, duration in d[name]:
+            dd[called].append(duration)
 
         total = timedelta()
-        for k in dd:
-            sd = sum(dd[k], timedelta())
+        for called in dd:
+            sd = sum(dd[called], timedelta())
             total += sd
-            print('| % 10s | % 3s | %  8s |' % (k, len(dd[k]), sd))
+            print('| % 10s | % 3s | %  8s |' % (called, len(dd[called]), sd))
 
         print('+------------+-----+----------+')
-        print('             | % 3s | % 8s |' % (len(d[n]), total))
+        print('             | % 3s | % 8s |' % (len(d[name]), total))
         print('             +-----+----------+')
 
 
