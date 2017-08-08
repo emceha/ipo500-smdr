@@ -10,7 +10,7 @@ header = b"datetime,duration,ringtime,caller,direction,called,dialled,account,is
           p2device,p2name,holdtime,parktime,authvalid,authcode,usercharged,callcharge,currency,aocamount,callunits,aocunits,\
           costperunit,markup,exttargettingcause,exttargeterid,exttargetednumber,ip1,port1,ip2,port2"
 
-count, lines = 0, 0
+counter, lines = 0, 0
 
 logging.basicConfig(filename="log\\smdr.log",
                     format='%(levelname)s : %(asctime)s : %(message)s',
@@ -21,7 +21,7 @@ logging.info('begin ...')
 try:
     conn = Telnet('192.168.0.201', 8808) # ipo
 
-    while count < 5: # 15s total timeout
+    while counter < 5: # 15s total timeout
         data = conn.read_until(b'\n', 3).strip() # 3s timeout
 
         if data:
@@ -39,9 +39,9 @@ try:
                     clog.write(data + b'\n')
 
             lines += 1
-            count = 0
+            counter = 0
         else:
-            count += 1
+            counter += 1
 
     logging.info('end, new records : %s' % lines)
 
