@@ -1,9 +1,9 @@
+#! python
+#! coding: utf-8
+
 '''
 Nothing to do with smdr (yet)
 '''
-
-#! python
-#! coding: utf-8
 
 import dash
 import dash_core_components as dcc
