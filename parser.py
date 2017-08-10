@@ -13,7 +13,7 @@ def main(logfile):
     filtered = (c for c in calls if c['direction'] == 'O' and c['p2name'].startswith('Line'))
 
     ## filter all outgoing internal calls
-    #filtered = [c for c in calls if c['direction'] == 'O' and c['isinternal'] == '1']
+    #filtered = (c for c in calls if c['direction'] == 'O' and c['isinternal'] == '1')
 
     ## for every caller collect pairs (called number, call duration)
     callers = defaultdict(list)
