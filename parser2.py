@@ -3,6 +3,7 @@
 
 import pandas as pd
 
+
 def main(logfile):
     df = pd.read_csv(logfile, sep=',')
     df['duration'] = pd.to_timedelta(df['duration'])
@@ -11,6 +12,7 @@ def main(logfile):
                  (df.duration > pd.to_timedelta(0))]
 
     print(df.groupby(['p1name', 'called'])['duration'].sum())
+
 
 if __name__ == "__main__":
     from sys import argv
