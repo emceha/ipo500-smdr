@@ -13,16 +13,16 @@ header = b"datetime,duration,ringtime,caller,direction,called,dialled,account,is
 
 counter, rows = 0, 0
 
-logging.basicConfig(filename="log\\smdr.log",
+if not os.path.isdir('.\\log'):
+        os.makedirs('.\\log')
+
+logging.basicConfig(filename=".\\log\\smdr.log",
                     format='%(levelname)s : %(asctime)s : %(message)s',
                     level=logging.INFO)
 
 logging.info('begin ...')
 
 try:
-    if not os.path.exists('log'):
-        os.makedirs('log')
-
     conn = Telnet('192.168.0.201', 8808) # ipo
 
     while counter < 5: # 15s total timeout
@@ -32,7 +32,7 @@ try:
             row = data.decode('utf-8')
             print(row)
             stamp = datetime.strptime(row[:19], '%Y/%m/%d %H:%M:%S')
-            filename = "log\\{}-{}.log".format(stamp.strftime("%Y"), stamp.strftime("%m"))
+            filename = ".\\log\\{}-{}.log".format(stamp.strftime("%Y"), stamp.strftime("%m"))
 
             if not os.path.exists(filename):
                 with open(filename, "wb") as clog:
