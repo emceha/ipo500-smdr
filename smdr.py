@@ -6,10 +6,10 @@ from datetime import datetime
 import logging
 import os
 
-header = b"callstart,duration,ring,caller,dir,called,dialled,account,isinternal,callid," + \
-         b"cont,p1device,p1name,p2device,p2name,hold,park,authvalid,authcode,ucharged," + \
-         b"charge,currency,aocamount,callunits,aocunits,costperunit,markup,extargcause," + \
-         b"extargid,extargeted,ip1,port1,ip2,port2"
+header = b"callstart,duration,ring,caller,dir,called,dialled,acc,isinternal," + \
+         b"callid,cont,p1device,p1name,p2device,p2name,hold,park,authvalid," + \
+         b"authcode,ucharged,charge,currency,aocamount,callunits,aocunits," + \
+         b"costperunit,markup,extargcause,extargid,extargeted,ip1,port1,ip2,port2"
 
 counter, rows = 0, 0
 
@@ -32,7 +32,8 @@ try:
             row = data.decode('utf-8')
             print(row)
             stamp = datetime.strptime(row[:19], '%Y/%m/%d %H:%M:%S')
-            filename = "./log/{}-{}.log".format(stamp.strftime("%Y"), stamp.strftime("%m"))
+            filename = "./log/{}-{}.log".format(stamp.strftime("%Y"), 
+                                                stamp.strftime("%m"))
 
             if not os.path.exists(filename):
                 with open(filename, "wb") as clog:
