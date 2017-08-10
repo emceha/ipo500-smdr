@@ -6,10 +6,10 @@ from datetime import datetime
 import logging
 import os
 
-header = b"datetime,duration,ringtime,caller,direction,called,dialled,account,isinternal,callid," + \
-         b"cont,p1device,p1name,p2device,p2name,holdtime,parktime,authvalid,authcode,usercharged," + \
-         b"callcharge,currency,aocamount,callunits,aocunits,costperunit,markup,exttargettingcause," + \
-         b"exttargeterid,exttargetednumber,ip1,port1,ip2,port2"
+header = b"callstart,duration,ring,caller,dir,called,dialled,account,isinternal,callid," + \
+         b"cont,p1device,p1name,p2device,p2name,hold,park,authvalid,authcode,ucharged," + \
+         b"charge,currency,aocamount,callunits,aocunits,costperunit,markup,extargcause," + \
+         b"extargid,extargeted,ip1,port1,ip2,port2"
 
 counter, rows = 0, 0
 
