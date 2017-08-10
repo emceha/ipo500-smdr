@@ -1,4 +1,4 @@
-#! python
+#! python3
 #! coding: utf-8
 
 from telnetlib import Telnet
@@ -13,10 +13,10 @@ header = b"datetime,duration,ringtime,caller,direction,called,dialled,account,is
 
 counter, rows = 0, 0
 
-if not os.path.isdir('.\\log'):
-        os.makedirs('.\\log')
+if not os.path.isdir('./log'):
+        os.makedirs('./log')
 
-logging.basicConfig(filename=".\\log\\smdr.log",
+logging.basicConfig(filename="./log/smdr.log",
                     format='%(levelname)s : %(asctime)s : %(message)s',
                     level=logging.INFO)
 
@@ -32,7 +32,7 @@ try:
             row = data.decode('utf-8')
             print(row)
             stamp = datetime.strptime(row[:19], '%Y/%m/%d %H:%M:%S')
-            filename = ".\\log\\{}-{}.log".format(stamp.strftime("%Y"), stamp.strftime("%m"))
+            filename = "./log/{}-{}.log".format(stamp.strftime("%Y"), stamp.strftime("%m"))
 
             if not os.path.exists(filename):
                 with open(filename, "wb") as clog:

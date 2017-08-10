@@ -1,4 +1,4 @@
-#! python
+#! python3
 #! coding: utf-8
 
 import csv
@@ -10,7 +10,7 @@ def main(logfile):
     calls = csv.DictReader(open(logfile, encoding='utf-8'))
 
     ## filter all outgoing external calls
-    filtered = (c for c in calls if c['direction'] == 'O' and c['p2name'].startswith('Line'))
+    filtered = (c for c in calls if c['p2name'].startswith('Line'))
 
     ## filter all outgoing internal calls
     #filtered = (c for c in calls if c['direction'] == 'O' and c['isinternal'] == '1')
