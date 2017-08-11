@@ -25,8 +25,8 @@ logging.info('begin ...')
 try:
     conn = Telnet('192.168.0.201', 8808) # ipo
 
-    while counter < 5: # 15s total timeout
-        data = conn.read_until(b'\n', 3).strip() # 3s timeout
+    while counter < 5:
+        data = conn.read_until(b'\n', 3).strip()
 
         if data:
             row = data.decode('utf-8')
