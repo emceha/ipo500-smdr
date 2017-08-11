@@ -1,10 +1,10 @@
 #! python3
 #! coding: utf-8
 
+import os
+import logging
 from telnetlib import Telnet
 from datetime import datetime
-import logging
-import os
 
 header = b"callstart,duration,ring,caller,dir,called,dialled,acc,isinternal," + \
          b"callid,cont,p1device,p1name,p2device,p2name,hold,park,authvalid," + \
