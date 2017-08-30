@@ -9,9 +9,5 @@
   </head>
   <body>
   {{!base}}
-    <div>&nbsp;</div>
-    <div class="footer">
-      &nbsp;&#x24B8;2017 em.chrzanowski@gmail.com
-    </div>
   </body>
 </html>
