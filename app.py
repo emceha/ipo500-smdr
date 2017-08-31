@@ -3,7 +3,6 @@
 
 import csv
 import os
-import time
 from collections import defaultdict
 from datetime import timedelta
 from bottle import Bottle, static_file, template
@@ -13,7 +12,7 @@ logspath = './log'
 
 
 @app.route('/')
-def check_logs():
+def main():
     result = []
     for f in os.listdir(logspath):
         if f != 'smdr.log':
@@ -23,7 +22,8 @@ def check_logs():
 
 @app.route('/stats/<logfile:path>')
 def report(logfile):
-    data = ''
+    with open(logfile, encoding="utf-8") as clog:
+        data = clog.read()
     return template('simple', data=data)
 
 
