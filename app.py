@@ -21,6 +21,12 @@ def check_logs():
     return template('index', data=result)
 
 
+@app.route('/stats/<logfile:path>')
+def report(logfile):
+    data = ''
+    return template('simple', data=data)
+
+
 @app.route('/dsp/<logfile:path>')
 def dsp_log(logfile):
     with open(logfile, encoding='utf-8', errors='replace') as clog:
@@ -35,17 +41,16 @@ def dsp_sheet(logfile):
     return template('calls', data=calls)
 
 
-@app.route('/stats/<filtr>/<logfile:path>')
+@app.route('/stat/<filtr>/<logfile:path>')
 def dsp_stats(logfile, filtr):
     calls = csv.DictReader(open(logfile, encoding='utf-8'))
-    time.sleep(1)
     if filtr == "ext":
-        filtered = (c for c in calls if c['dir'] == 'O' and
-                    c['p2name'].startswith('Line') and
-                    len(c['called']) > 8)
+        filtered = (c for c in calls
+                    if c['dir'] == 'O' and c['p2name'].startswith('Line')
+                    and len(c['called']) > 8)
     elif filtr == "int":
-        filtered = (c for c in calls if c['dir'] == 'O' and
-                    c['isinternal'] == '1')
+        filtered = (c for c in calls
+                    if c['dir'] == 'O' and c['isinternal'] == '1')
     else:
         filtered = ()
 

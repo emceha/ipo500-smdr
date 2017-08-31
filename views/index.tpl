@@ -10,9 +10,9 @@
             <td class="center"> {{n+1}} </td>
             <td class="center"> {{log}} </td>
             <td class="center"><a href="/calls/{{path}}"> Calls </a></td>
-            <td class="center"><a href="/stats/int/{{path}}"> Internal </a></td>
-            <td class="center"><a href="/stats/ext/{{path}}"> External </a></td>
-            <td class="center"><a href="/dsp/log/smdr.log"> ... </a></td>
+            <td class="center"><a href="/stat/int/{{path}}"> Internal </a></td>
+            <td class="center"><a href="/stat/ext/{{path}}"> External </a></td>
+            <td class="center"><a href="/stats/{{path}}"> ... </a></td>
           </tr>
       % end
     </table>

@@ -1,3 +1,3 @@
-% rebase('header.tpl', title='SMDR / LOG')  
+% rebase('header.tpl', title='SMDR / TXT')  
   <pre>{{data}}
-  </pre>
+    </pre>
