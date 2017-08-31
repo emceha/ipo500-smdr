@@ -24,7 +24,7 @@ def check_logs():
 @app.route('/dsp/<logfile:path>')
 def dsp_log(logfile):
     with open(logfile, encoding='utf-8', errors='replace') as clog:
-        result = clog.read()   
+        result = clog.read()
     return template('simple', data=result)
 
 
@@ -38,15 +38,14 @@ def dsp_sheet(logfile):
 @app.route('/stats/<filtr>/<logfile:path>')
 def dsp_stats(logfile, filtr):
     calls = csv.DictReader(open(logfile, encoding='utf-8'))
-    time.sleep(1)   
+    time.sleep(1)
     if filtr == "ext":
         filtered = (c for c in calls if c['dir'] == 'O' and
-                    len(c['called']) > 8 and
-                    c['p2name'].startswith('Line'))
-
+                    c['p2name'].startswith('Line') and
+                    len(c['called']) > 8)
     elif filtr == "int":
-        filtered = (c for c in calls if c['dir'] == 'O' and c['isinternal'] == '1')
-        
+        filtered = (c for c in calls if c['dir'] == 'O' and
+                    c['isinternal'] == '1')
     else:
         filtered = ()
 
@@ -67,7 +66,7 @@ def dsp_stats(logfile, filtr):
     for caller in callers:
         subtab = []
         subtab.append((caller, ' ', ' '))
-        
+
         called = defaultdict(list)
         for number, duration in callers[caller]:
             called[number].append(duration)
@@ -112,4 +111,4 @@ def get_css():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8877, debug=True)
+    app.run(host='0.0.0.0', port=8877, debug=True, reloader=True)
