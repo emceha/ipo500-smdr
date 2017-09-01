@@ -32,7 +32,7 @@ try:
             row = data.decode('utf-8')
             print(row)
             stamp = datetime.strptime(row[:19], '%Y/%m/%d %H:%M:%S')
-            filename = "./log/{}-{}.log".format(stamp.strftime("%Y"), 
+            filename = "./log/{}-{}.csv".format(stamp.strftime("%Y"), 
                                                 stamp.strftime("%m"))
 
             if not os.path.exists(filename):
