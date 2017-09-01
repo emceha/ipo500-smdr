@@ -33,9 +33,8 @@ try:
         if not data:
             break
         else:
-            print(data.decode('utf-8'))
-
-            year, month = data[:7].split('/')
+            row = data.decode('utf-8')
+            year, month = row[:7].split('/')
             filename = "./log/{}-{}.csv".format(year, month)
 
             if not os.path.exists(filename):
@@ -45,6 +44,8 @@ try:
             else:
                 with open(filename, "ab") as clog:
                     clog.write(data + b'\n')
+                    
+            print(row)
             rows += 1
 
     logging.info('done, new rows: {}'.format(rows))
