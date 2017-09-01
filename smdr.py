@@ -23,13 +23,13 @@ logging.basicConfig(filename="./log/smdr.log",
                     level=logging.INFO)
 
 logging.info('begin ...')
-cntr, rows = 0, 0
 
+rows = 0
 try:
     conn = Telnet('192.168.0.201', 8808)  # ipo
 
-    while cntr < 5:
-        data = conn.read_until(b'\n', 3).strip()
+    while True:
+        data = conn.read_until(b'\n', 10).strip()
 
         if data:
             row = data.decode('utf-8')
@@ -45,13 +45,11 @@ try:
             else:
                 with open(filename, "ab") as clog:
                     clog.write(data + b'\n')
-
             rows += 1
-            cntr = 0
         else:
-            cntr += 1
+            break
 
-    logging.info('end, new rows : %s' % rows)
+    logging.info('done, new rows: {}'.format(rows))
 
 except Exception as err:
     print(str(err))
