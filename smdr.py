@@ -1,4 +1,8 @@
-#! python3
+'''
+ipo set to listen on port 8808
+'''
+
+#! /usr/bin/python3
 # coding: utf-8
 
 import os
@@ -11,10 +15,10 @@ header = b"callstart,duration,ring,caller,dir,called,dialled,acc,isinternal," + 
          b"authcode,ucharged,charge,currency,aocamount,callunits,aocunits," + \
          b"costperunit,markup,extargcause,extargid,extargeted,ip1,port1,ip2,port2"
 
-counter, rows = 0, 0
+cntr, rows = 0, 0
 
 if not os.path.isdir('./log'):
-        os.makedirs('./log')
+    os.makedirs('./log')
 
 logging.basicConfig(filename="./log/smdr.log",
                     format='%(levelname)s : %(asctime)s : %(message)s',
@@ -23,16 +27,16 @@ logging.basicConfig(filename="./log/smdr.log",
 logging.info('begin ...')
 
 try:
-    conn = Telnet('192.168.0.201', 8808) # ipo
+    conn = Telnet('192.168.0.201', 8808)  # ipo
 
-    while counter < 5:
+    while cntr < 5:
         data = conn.read_until(b'\n', 3).strip()
 
         if data:
             row = data.decode('utf-8')
             print(row)
             stamp = datetime.strptime(row[:19], '%Y/%m/%d %H:%M:%S')
-            filename = "./log/{}-{}.csv".format(stamp.strftime("%Y"), 
+            filename = "./log/{}-{}.csv".format(stamp.strftime("%Y"),
                                                 stamp.strftime("%m"))
 
             if not os.path.exists(filename):
@@ -44,9 +48,9 @@ try:
                     clog.write(data + b'\n')
 
             rows += 1
-            counter = 0
+            cntr = 0
         else:
-            counter += 1
+            cntr += 1
 
     logging.info('end, new rows : %s' % rows)
 
