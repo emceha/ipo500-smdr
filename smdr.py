@@ -15,8 +15,6 @@ header = b"callstart,duration,ring,caller,dir,called,dialled,acc,isinternal," + 
          b"authcode,ucharged,charge,currency,aocamount,callunits,aocunits," + \
          b"costperunit,markup,extargcause,extargid,extargeted,ip1,port1,ip2,port2"
 
-cntr, rows = 0, 0
-
 if not os.path.isdir('./log'):
     os.makedirs('./log')
 
@@ -25,6 +23,7 @@ logging.basicConfig(filename="./log/smdr.log",
                     level=logging.INFO)
 
 logging.info('begin ...')
+cntr, rows = 0, 0
 
 try:
     conn = Telnet('192.168.0.201', 8808)  # ipo
