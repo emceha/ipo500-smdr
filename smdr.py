@@ -35,11 +35,9 @@ try:
             break
         else:
             row = data.decode('utf-8')
-            print(row)
             stamp = datetime.strptime(row[:19], '%Y/%m/%d %H:%M:%S')
             filename = "./log/{}-{}.csv".format(stamp.strftime("%Y"),
                                                 stamp.strftime("%m"))
-
             if not os.path.exists(filename):
                 with open(filename, "wb") as clog:
                     clog.write(header + b'\n')
@@ -47,6 +45,8 @@ try:
             else:
                 with open(filename, "ab") as clog:
                     clog.write(data + b'\n')
+
+            print(row)
             rows += 1
 
     logging.info('done, new rows: {}'.format(rows))
