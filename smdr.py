@@ -3,7 +3,7 @@ ipo set to listen on port 8808
 '''
 
 #! /usr/bin/python3
-# coding: utf-8
+# -*- coding: utf-8 -*-
 
 import os
 import logging
