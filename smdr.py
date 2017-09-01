@@ -31,7 +31,9 @@ try:
     while True:
         data = conn.read_until(b'\n', 10).strip()
 
-        if data:
+        if not data:
+            break
+        else:
             row = data.decode('utf-8')
             print(row)
             stamp = datetime.strptime(row[:19], '%Y/%m/%d %H:%M:%S')
@@ -46,8 +48,6 @@ try:
                 with open(filename, "ab") as clog:
                     clog.write(data + b'\n')
             rows += 1
-        else:
-            break
 
     logging.info('done, new rows: {}'.format(rows))
 
