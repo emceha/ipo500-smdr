@@ -4,6 +4,7 @@ ipo set to listen on port 8808
 
 #! /usr/bin/python3
 # -*- coding: utf-8 -*-
+# pylint: disable=invalid-name
 
 import os
 import logging
