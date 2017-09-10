@@ -1,7 +1,3 @@
-'''
-ipo set to listen on port 8808
-'''
-
 #! /usr/bin/python3
 # -*- coding: utf-8 -*-
 # pylint: disable=invalid-name
@@ -26,7 +22,7 @@ logging.info('begin ...')
 
 rows = 0
 try:
-    conn = Telnet('192.168.0.201', 8808)  # ipo
+    conn = Telnet('192.168.0.201', 8808) # ipo 
 
     while True:
         data = conn.read_until(b'\n', 10).strip()
