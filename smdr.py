@@ -21,7 +21,7 @@ logging.info('begin ...')
 
 rows = 0
 try:
-    conn = Telnet('192.168.0.201', 8808) # ipo 
+    conn = Telnet('192.168.0.201', 8808) # ipo
 
     while True:
         data = conn.read_until(b'\n', 10).strip()
@@ -40,7 +40,7 @@ try:
             else:
                 with open(filename, "ab") as clog:
                     clog.write(data + b'\n')
-                    
+
             print(row)
             rows += 1
 
