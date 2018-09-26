@@ -10,14 +10,14 @@ header = b"callstart,duration,ring,caller,dir,called,dialled,acc,isinternal," + 
          b"authcode,ucharged,charge,currency,aocamount,callunits,aocunits," + \
          b"costperunit,markup,extargcause,extargid,extargeted,ip1,port1,ip2,port2"
 
-if not os.path.isdir('./log'):
-    os.makedirs('./log')
+if not os.path.isdir("./log"):
+    os.makedirs("./log")
 
 logging.basicConfig(filename="./log/smdr.log",
-                    format='%(levelname)s : %(asctime)s : %(message)s',
+                    format="%(levelname)s : %(asctime)s : %(message)s",
                     level=logging.INFO)
 
-logging.info('begin ...')
+logging.info("begin ...")
 
 rows = 0
 try:
@@ -44,8 +44,8 @@ try:
             print(row)
             rows += 1
 
-    logging.info('done, new rows: {}'.format(rows))
+    logging.info("done, new rows: {}".format(rows))
 
 except Exception as err:
     print(str(err))
-    logging.exception('aborted')
+    logging.exception("aborted")
