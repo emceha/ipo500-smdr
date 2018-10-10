@@ -19,9 +19,9 @@ logging.basicConfig(filename="./log/smdr.log",
 
 logging.info("begin ...")
 
-rows = 0
+
 try:
-    conn = Telnet('192.168.4.201', 8808) # ipo
+    conn, rows = Telnet('192.168.4.201', 8808), 0
 
     while True:
         data = conn.read_until(b'\n', 10).strip()
@@ -47,5 +47,4 @@ try:
     logging.info("done, new rows: {}".format(rows))
 
 except Exception as err:
-    print(str(err))
     logging.exception("aborted")
