@@ -1,14 +1,14 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 import os
 import logging
 from telnetlib import Telnet
 
-HEADER = b"callstart,duration,ring,caller,dir,called,dialled,acc," + \
-         b"isinternal,callid,cont,p1device,p1name,p2device,p2name," + \
-         b"hold,park,authvalid,authcode,ucharged,charge,currency," + \
-         b"aocamount,callunits,aocunits,costperunit,markup," + \
-         b"extargcause,extargid,extargeted,ip1,port1,ip2,port2"
+HEADER = "callstart,duration,ring,caller,dir,called,dialled,acc," + \
+         "isinternal,callid,cont,p1device,p1name,p2device,p2name," + \
+         "hold,park,authvalid,authcode,ucharged,charge,currency," + \
+         "aocamount,callunits,aocunits,costperunit,markup," + \
+         "extargcause,extargid,extargeted,ip1,port1,ip2,port2"
 
 if not os.path.isdir("./log"):
     os.makedirs("./log")
@@ -37,12 +37,12 @@ try:
             filename = "./log/{}-{}.csv".format(year, month)
 
             if not os.path.exists(filename):
-                with open(filename, "wb") as clog:
-                    clog.write(HEADER + b'\n')
-                    clog.write(data + b'\n')
+                with open(filename, "w", encoding='utf-8') as clog:
+                    clog.write(HEADER + '\n')
+                    clog.write(row + '\n')
             else:
-                with open(filename, "ab") as clog:
-                    clog.write(data + b'\n')
+                with open(filename, "a", encoding='utf-8') as clog:
+                    clog.write(row + '\n')
 
     logging.info(" ... done")
 
