@@ -13,10 +13,9 @@ HEADER = ("callstart,duration,ring,caller,dir,called,dialled,acc,isinternal,"
 if not os.path.isdir("./log"):
     os.makedirs("./log")
 
-logging.basicConfig(
-    filename="./log/smdr.log",
-    format="%(levelname)s : %(asctime)s : %(message)s",
-    level=logging.INFO)
+logging.basicConfig(filename="./log/smdr.log",
+                    format="%(levelname)s : %(asctime)s : %(message)s",
+                    level=logging.INFO)
 
 logging.info("begin ...")
 
