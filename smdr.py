@@ -65,8 +65,7 @@ def main(db, address, port):
                 cuid = make_cuid(row)
                 row.append(cuid)
 
-                dt = row[0].replace('/', '-')
-                row[0] = int(datetime.fromisoformat(dt).timestamp())
+                row[0] = row[0].replace('/', '-')
                 insert_row(conn, crsr, row)
                 logging.info(f"{cuid}")
 

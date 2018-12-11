@@ -56,8 +56,7 @@ def csv_to_sql(db, csvfile):
             for row in reader:
                 cuid = make_cuid(row)
                 if not row_exists(conn, crsr, cuid):
-                    dt = row[0].replace('/', '-')
-                    row[0] = int(datetime.fromisoformat(dt).timestamp())
+                    row[0] = row[0].replace('/', '-')
                     row.append(cuid)
                     values = ','.join('?' * len(cols))
                     insert_row(conn, crsr, strcols, values, row)
