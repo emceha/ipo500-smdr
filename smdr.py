@@ -68,7 +68,7 @@ def main(db, address, port):
                 dt = row[0].replace('/', '-')
                 row[0] = int(datetime.fromisoformat(dt).timestamp())
                 insert_row(conn, crsr, row)
-                logging.info(f"{dt} : {cuid}")
+                logging.info(f"{cuid}")
 
         logging.info("... done ")
     except Exception as error:

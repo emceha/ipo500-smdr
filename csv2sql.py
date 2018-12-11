@@ -76,6 +76,4 @@ def main(dbpath, flist):
 
 if __name__ == "__main__":
     if sys.argv[1:]:
-        if not os.path.exists('./db'):
-            os.makedirs('./db')
         main('./db/smdr.db', sys.argv[1:])
