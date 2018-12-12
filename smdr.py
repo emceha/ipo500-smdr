@@ -78,4 +78,9 @@ def main(db, log, address, port):
 
 
 if __name__ == "__main__":
+    if not os.path.exists('./db'):
+        os.makedirs('./db')
+    if not os.path.exists('./log'):
+        os.makedirs('./log')
+
     main('./db/smdr.db', './log/calls.log', '192.168.4.201', 8808)
