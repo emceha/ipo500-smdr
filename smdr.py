@@ -5,7 +5,6 @@ import logging
 import sqlite3
 import hashlib
 from telnetlib import Telnet
-from datetime import datetime
 
 
 CNAMES = ("callstart,duration,ring,caller,dir,called,dialled,acc,"
