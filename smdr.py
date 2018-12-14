@@ -35,12 +35,6 @@ def create_table(conn, crsr):
     conn.commit()
 
 
-def get_row(adrs, port):
-    with Telnet(adrs, port, 15) as conn:
-        row = conn.read_until(b'\n', 10).strip()
-    return row
-
-
 def insert_row(conn, crsr, row):
     values = ','.join('?' * len(row))
     query = f"INSERT INTO calls({CNAMES}) VALUES({values})"
@@ -48,18 +42,18 @@ def insert_row(conn, crsr, row):
     conn.commit()
 
 
-def main(db, log, address, port):
+def main(db, log, adrs, port):
     try:
         with sqlite3.connect(db) as conn:
             crsr = conn.cursor()
             create_table(conn, crsr)
 
             logging.info(f"database : '{db}'")
-            logging.info(f"ipo : {address}:{port}")
+            logging.info(f"ipo : {adrs}:{port}")
 
-            with open(log, 'ab') as bkp:
+            with open(log, 'ab') as bkp, Telnet(adrs, port, 15) as ipo:
                 while True:
-                    row = get_row(address, port)
+                    row = ipo.read_until(b'\n', 10).strip()
                     if not row:
                         break
 
