@@ -20,14 +20,13 @@ DATATYPES = ("TEXT,TEXT,INTEGER,TEXT,TEXT,TEXT,TEXT,TEXT,INTEGER,"
              "TEXT,INTEGER,TEXT,INTEGER,TEXT NOT NULL UNIQUE")
 
 COLUMNS = ','.join([f"{c} {d}" for c, d in zip(
-    CNAMES.split(','), DATATYPES.split(','))])
+                    CNAMES.split(','), DATATYPES.split(','))])
 
 
 logging.basicConfig(
     format="%(asctime)s [ %(levelname)-6s] %(message)s ",
     datefmt="%Y-%m-%d %H:%M:%S",
-    level=logging.INFO
-)
+    level=logging.INFO)
 
 
 def create_table(conn, crsr):
@@ -37,19 +36,19 @@ def create_table(conn, crsr):
 
 def insert_row(conn, crsr, row):
     values = ','.join('?' * len(row))
-    query = f"INSERT INTO calls({CNAMES}) VALUES({values})"
+    query = f"INSERT OR IGNORE INTO calls({CNAMES}) VALUES({values})"
     crsr.execute(query, row)
     conn.commit()
 
 
 def main(db, log, adrs, port):
+    logging.info(f"database : '{db}'")
+    logging.info(f"ipo : {adrs}:{port}")
+
     try:
         with sqlite3.connect(db) as conn:
             crsr = conn.cursor()
             create_table(conn, crsr)
-
-            logging.info(f"database : '{db}'")
-            logging.info(f"ipo : {adrs}:{port}")
 
             with open(log, 'ab') as bkp, Telnet(adrs, port, 15) as ipo:
                 while True:
@@ -59,11 +58,11 @@ def main(db, log, adrs, port):
 
                     bkp.write(row + b'\n')
                     chksum = hashlib.sha1(row).hexdigest()
-
                     row = row.decode().replace('/', '-').split(',')
                     row.append(chksum)
 
                     insert_row(conn, crsr, row)
+                    logging.info(f"{row[0]}, {row[1]}, {row[3]}, {row[5]} ...")
 
         logging.info("... done")
     except Exception as error:
